@@ -6,13 +6,14 @@
  */
 namespace Connectors\MySQL;
 
+use Alpha\Connector\RepositoryConnectorInterface;
 use Connectors\MySQL\MySQLResultIterator;
 use Connectors\MySQL\MySQLUtils;
 
 /**
  * MySQL repository.
  */
-class MySQLConnector implements \Alpha\Connector\RepositoryInterface
+class MySQLConnector implements RepositoryConnectorInterface
 {
     /**
      * @var \mysqli
