@@ -60,7 +60,7 @@ class AuthenticationConnector implements AuthenticationRepositoryInterface
     public function retrieveEntity($entityName)
     {
         $bucket = Buckets::get($this->entityBucket);
-        $entity = $bucket::find(array($this->entitySearchKey => $entityName))->current();
+        $entity = $bucket->find(array($this->entitySearchKey => $entityName))->current();
         if ($entity === null) {
             throw new \Exception('Authenticable Entity Not Found');
         }
