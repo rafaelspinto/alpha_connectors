@@ -7,13 +7,13 @@
 namespace Connectors\Language;
 
 use Alpha\Core\Config;
-use Alpha\Connector\LanguageRepositoryInterface;
+use Alpha\Connector\LanguageConnectorInterface;
 use Connectors\Language\LanguageHandler;
 
 /**
  * Language Repository.  
  */
-class LanguageConnector implements LanguageRepositoryInterface
+class LanguageConnector implements LanguageConnectorInterface
 {
     protected $languageHandler;
 
