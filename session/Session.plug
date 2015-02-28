@@ -1,0 +1,11 @@
+[regenerate]
+each_request = 0
+delete_old   = 0
+
+[session]
+name     = 'alpha_session'
+expires  = 3600
+path  	 = '/'
+domain   = '.alpha.dev'
+secure   = 0
+httponly = 0
