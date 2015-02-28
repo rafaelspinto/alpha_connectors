@@ -1,0 +1,4 @@
+[session]
+connector    = "Session"
+expires      = 0;
+auth_entity  = "user"
