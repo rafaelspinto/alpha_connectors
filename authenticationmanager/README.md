@@ -14,3 +14,41 @@ auth_entity  = "user"		// The authenticated entity name to be identifyed in a Se
 
 ## Usage
 Just move the AuthenticationManager.plug to Webapp/plugs folder and change the settings.
+
+* Using the AuthenticationManagerConnector in a controller to show the authenticated entity, as a user.
+```
+public function getDetails()
+{
+    $this->data['user'] = Connectors::get('AuthenticationManager')->getDetails();
+}
+```
+* Using the AuthenticationManagerConnector to check if the entity is authenticated in a controller action.
+```
+public function postComment($PARAM_comment)
+{
+  $authConnector = Connectors::get('AuthenticationManager');
+  if ($authConnector->isAuthenticated()) {
+    // Do your stuff
+  } else {
+    // Redirect for login page
+    Router::redirectTo('/login');
+  }
+}
+```
+* Using the AuthenticationManagerConnector in a controller action with the AuthenticationConnector to process a login and save the authenticated user.
+```
+public function postLogin($PARAM_email, $PARAM_password)
+{
+  try {
+    $authenticator = Connectors::get('Authentication');
+    if ($authenticator->authenticate($PARAM_email, $PARAM_password)) {
+      // Now that the user is authenticated, lets save it
+      Connectors::get('AuthenticationManager')->save($authenticator->retrieveEntity($PARAM_email));
+      Router::redirectTo('/dashboard');
+    }
+    throw new \Exception('invalid_credentials_exception');
+  } catch (\Exception $ex) {
+    // Handle the exceptions
+  }
+}
+```
