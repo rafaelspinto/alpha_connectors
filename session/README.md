@@ -19,3 +19,21 @@ httponly = 0			// Use PHP HttpOnly param.  Disabled: 0 Enabled: 1
 
 ## Usage
 Just move the Session.plug to Webapp/plugs folder and change the settings.
+
+* Using the SessionConnector in a Controller Action to save some content.
+```
+function getComment($PARAM_comment)
+{
+  Connectors::get('Session')->set('last_comment', $PARAM_comment);
+  // Do your stuff because we've saved the comment information on session using 'last_comment' key
+}
+```
+
+* Using the SessionConnector in a Controller Action while you want to clear the entire session.
+```
+function get()
+{
+  // you stuff
+  Connectors::get('Session')->clear();
+}
+```
